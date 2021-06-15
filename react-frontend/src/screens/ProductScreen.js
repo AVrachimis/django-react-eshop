@@ -8,7 +8,7 @@ import products from '../products'
 
 
 function ProductScreen({ match }) {
-    const product = products.find((p) => p._id == match.params.id)
+    const product = products.find((p) => p._id === match.params.id)
     return (
         <div>
             <Link to='/' className='btn btn-light my-3'> Back to </Link>
@@ -60,7 +60,7 @@ function ProductScreen({ match }) {
                             </ListGroup.Item>
 
                             <ListGroup.Item>
-                                <Button className='btn-block' disabled={product.countInStock == 0} type='button'>
+                                <Button className='btn-block' disabled={product.countInStock === 0} type='button'>
                                     Add to Card
                                 </Button>
 
