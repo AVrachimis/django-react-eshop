@@ -20,6 +20,10 @@ function CartScreen({ match, location, history }) {
         }
     }, [dispatch, productId, qty])
 
+    const removeFromCartHandler = (id) => {
+
+    }
+
     return (
         <Row>
             <Col md={8}>
@@ -41,18 +45,17 @@ function CartScreen({ match, location, history }) {
                                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                                     </Col>
 
-                                    <Col md={3}>
+                                    <Col md={2}>
                                         ${item.price}
                                     </Col>
 
-                                    <Col md={3}>
+                                    <Col md={2}>
                                         <Form.Control
                                             as="select"
                                             value={item.qty}
                                             onChange={(e) => dispatch(addToCart(item.product, e.target.value))}
                                         >
                                             {
-
                                                 [...Array(item.countInStock).keys()].map((x) => (
                                                     <option key={x + 1} value={x + 1}>
                                                         {x + 1}
@@ -63,7 +66,19 @@ function CartScreen({ match, location, history }) {
                                         </Form.Control>
                                     </Col>
 
-                                    <Col md={3}>
+                                    <Col md={1}>
+                                        <Button
+                                            type='button'
+                                            variant='light'
+                                            onClick={() => removeFromCartHandler(item.product)}
+                                        >
+                                            <i className='fas fa-trash'></i>
+                                        </Button>
+                                    </Col>
+
+
+
+                                    <Col md={2}>
                                         Total Price: ${item.price * item.qty}
                                     </Col>
                                 </Row>
