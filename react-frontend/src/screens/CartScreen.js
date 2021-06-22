@@ -29,7 +29,23 @@ function CartScreen({ match, location, history }) {
                         You cart is empty <Link to='/'>Go Back</Link>
                     </h4>
                 ) : (
-                    <h1>Product List</h1>
+                    <ListGroup variant='flush'>
+                        {cartItems.map(item => (
+                            <ListGroup.Item key={item.product}>
+                                <Row>
+                                    <Col md={2}>
+                                        <Image src={item.image} alt={item.name} fluid rounded />
+                                    </Col>
+                                    <Col md={3}>
+                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                    </Col>
+                                    <Col md={3}>
+                                        ${item.price}
+                                    </Col>
+                                </Row>
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
                 )
                 }
             </Col>
