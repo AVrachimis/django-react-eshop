@@ -62,6 +62,10 @@ function CartScreen({ match, location, history }) {
 
                                         </Form.Control>
                                     </Col>
+
+                                    <Col md={3}>
+                                        Total Price: ${item.price * item.qty}
+                                    </Col>
                                 </Row>
                             </ListGroup.Item>
                         ))}
