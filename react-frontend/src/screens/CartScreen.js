@@ -21,9 +21,23 @@ function CartScreen({ match, location, history }) {
     }, [dispatch, productId, qty])
 
     return (
-        <div>
-            Card
-        </div>
+        <Row>
+            <Col md={8}>
+                <h1>Shopping Cart</h1>
+                {cartItems.length === 0 ? (
+                    <h4>
+                        You cart is empty <Link to='/'>Go Back</Link>
+                    </h4>
+                ) : (
+                    <h1>Product List</h1>
+                )
+                }
+            </Col>
+
+            <Col md={4}>
+
+            </Col>
+        </Row>
     )
 }
 
