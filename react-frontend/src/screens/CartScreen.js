@@ -24,6 +24,10 @@ function CartScreen({ match, location, history }) {
 
     }
 
+    const checkoutHandler = () => {
+        history.push('/login?redirect=shipping')
+
+    }
     return (
         <Row>
             <Col md={8}>
@@ -53,7 +57,7 @@ function CartScreen({ match, location, history }) {
                                         <Form.Control
                                             as="select"
                                             value={item.qty}
-                                            onChange={(e) => dispatch(addToCart(item.product, e.target.value))}
+                                            onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}
                                         >
                                             {
                                                 [...Array(item.countInStock).keys()].map((x) => (
@@ -76,11 +80,6 @@ function CartScreen({ match, location, history }) {
                                         </Button>
                                     </Col>
 
-
-
-                                    <Col md={2}>
-                                        Total Price: ${item.price * item.qty}
-                                    </Col>
                                 </Row>
                             </ListGroup.Item>
                         ))}
@@ -90,6 +89,25 @@ function CartScreen({ match, location, history }) {
             </Col>
 
             <Col md={4}>
+                <Card>
+                    <ListGroup variant='flush'>
+                        <ListGroup.Item>
+                            <h2>Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
+                            ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <Button
+                                type='button'
+                                className='btn-block'
+                                disabled={cartItems.length === 0}
+                                onClick={checkoutHandler}
+                            >
+                                Process to Checkout
+                            </Button>
+                        </ListGroup.Item>
+
+                    </ListGroup>
+                </Card>
 
             </Col>
         </Row>
