@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 
 from .models import Product
 from .products import products
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer, UserSerializer
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -36,6 +36,13 @@ class MyTokenObtainPairView(TokenObtainPairView):
 def getRoutes(request):
     routes = []
     return Response(routes)
+
+
+@api_view(['GET', ])
+def getUserProfile(request):
+    user = request.user
+    serializer = UserSerializer(user, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['GET', ])
