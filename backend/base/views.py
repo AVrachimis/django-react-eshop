@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 
 from .models import Product
 from .products import products
-from .serializers import ProductSerializer, UserSerializer
+from .serializers import ProductSerializer, UserSerializer, UserSerializerWithToken
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -19,9 +19,11 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
 
+        serializer = UserSerializerWithToken(self.user).data
+
         # Add custom claims
-        data['username'] = self.user.username
-        data['email'] = self.user.email
+        for key,value in serializer.items():
+            data[key] = value
 
 
         return data
