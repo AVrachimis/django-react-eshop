@@ -21,7 +21,7 @@ function App() {
 
           <Route path='/cart/:id?' component={CartScreen} />
 
-          <Route path='/login/' component={LoginScreen} />
+          <Route path='/login' component={LoginScreen} />
 
 
         </Container>
