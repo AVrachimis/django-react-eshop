@@ -5,7 +5,8 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 
-import { getUserDetails } from '../actions/userActions'
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 
 function ProfileScreen({ history }) {
 
@@ -27,20 +28,25 @@ function ProfileScreen({ history }) {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
+    const { success } = userUpdateProfile
+
+
 
     // make sure a logged in user cannot login again
     useEffect(() => {
         if (!userInfo) {
             history.push('/login')
         } else {
-            if (!user || !user.name) {
+            if (!user || !user.name || success) {
+                dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
             } else {
                 setName(user.name)
                 setEmail(user.email)
             }
         }
-    }, [dispatch, history, userInfo, user])
+    }, [dispatch, history, userInfo, user, success])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -48,8 +54,15 @@ function ProfileScreen({ history }) {
         if (password != confirmPassword) {
             setMessage('Passwords do not match')
         } else {
-            // dispatch(register(name, email, password))
-            console.log('Updating...')
+            dispatch(updateUserProfile({
+                'id': user._id,
+                'name': name,
+                'email': email,
+                'password': password
+
+            }))
+            setMessage('')
+
         }
 
     }
@@ -91,7 +104,6 @@ function ProfileScreen({ history }) {
                     <Form.Group controlId='password'>
                         <Form.Label>Password</Form.Label>
                         <Form.Control
-                            required
                             type='password'
                             placeholder='Enter Password'
                             value={password}
@@ -104,7 +116,6 @@ function ProfileScreen({ history }) {
                     <Form.Group controlId='passwordConfirm'>
                         <Form.Label>Confirm Password</Form.Label>
                         <Form.Control
-                            required
                             type='password'
                             placeholder='Confirm Password'
                             value={confirmPassword}
