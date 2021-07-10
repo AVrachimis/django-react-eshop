@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from base.models import Product, Order, OrderItem, ShippingAddress
-from base.serializers import ProductSerializer
+from base.serializers import ProductSerializer, OrderSerializer
 
 from rest_framework import status
 
@@ -53,8 +53,6 @@ def addOrderitems(request):
                 product.countInStock -= item.qty
                 product.save()
 
-        
+    serializer = OrderSerializer(order, many=True)
 
-
-
-    return Response('Order')
+    return Response(serializer.data)
