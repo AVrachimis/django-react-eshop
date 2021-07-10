@@ -11,11 +11,12 @@ function PlaceOrderScreen() {
     const cart = useSelector(state => state.cart)
 
     cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
-    cart.shippingPrice = (cart.cartItems > 100 ? 0 : 10).toFixed(2)
+    cart.shippingPrice = (cart.itemsPrice > 100 ? 0 : 10).toFixed(2)
     cart.taxPrice = Number((0.082) * cart.itemsPrice).toFixed(2)
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
     const placeOrder = () => {
+
 
     }
 
@@ -55,7 +56,7 @@ function PlaceOrderScreen() {
                                         {cart.cartItems.map((item, index) => (
                                             <ListGroup.Item key={index}>
                                                 <Row>
-                                                    <Col md={1}>
+                                                    <Col md={2}>
                                                         <Image src={item.image} alt={item.name} fluid rounded />
                                                     </Col>
                                                     <Col>
