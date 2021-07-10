@@ -38,7 +38,7 @@ def addOrderitems(request):
 
         )
         # 3 create order items and set order to ordeItem relationship
-        for i in orderitems:
+        for i in orderItems:
                 product = Product.objects.get(_id=i['product'])
 
                 item = OrderItem.objects.create(
@@ -53,6 +53,6 @@ def addOrderitems(request):
                 product.countInStock -= item.qty
                 product.save()
 
-    serializer = OrderSerializer(order, many=True)
+        serializer = OrderSerializer(order, many=False)
 
-    return Response(serializer.data)
+        return Response(serializer.data)
