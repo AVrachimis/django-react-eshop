@@ -49,7 +49,7 @@ function OrderScreen({ match }) {
                             <p><strong>Email: </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
 
                             <p>
-                                <strong>Shipping: </strong>
+                                <strong>Shipping Address: </strong>
                                 {order.shippingAddress.address},{order.shippingAddress.city},
                                 {'  '}
                                 {order.shippingAddress.postalCode},
