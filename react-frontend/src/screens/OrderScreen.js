@@ -45,6 +45,7 @@ function OrderScreen({ match }) {
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
                             <h2>Shipping</h2>
+                            <p><strong>Name: </strong>{order.user.name}</p>
                             <p>
                                 <strong>Shipping: </strong>
                                 {order.shippingAddress.address},{order.shippingAddress.city},
