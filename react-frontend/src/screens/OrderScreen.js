@@ -46,6 +46,8 @@ function OrderScreen({ match }) {
                         <ListGroup.Item>
                             <h2>Shipping</h2>
                             <p><strong>Name: </strong>{order.user.name}</p>
+                            <p><strong>Email: </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
+
                             <p>
                                 <strong>Shipping: </strong>
                                 {order.shippingAddress.address},{order.shippingAddress.city},
@@ -54,6 +56,12 @@ function OrderScreen({ match }) {
                                 {'  '}
                                 {order.shippingAddress.country}
                             </p>
+
+                            {order.isDelivered ? (
+                                <p>Status: Delivered on {order.deliveredAt}</p>
+                            ) : (
+                                <p >Status: Not Delivered</p>
+                            )}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
@@ -62,6 +70,11 @@ function OrderScreen({ match }) {
                                 <strong>Method: </strong>
                                 {order.paymentMethod}
                             </p>
+                            {order.isPaid ? (
+                                <p>Paid on {order.paidAt}</p>
+                            ) : (
+                                <p >Not Paid</p>
+                            )}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
