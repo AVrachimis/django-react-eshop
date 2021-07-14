@@ -7,6 +7,7 @@ import FormContainer from '../components/FormContainer'
 
 import { getOrderDetails } from '../actions/orderActions'
 import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 function OrderScreen({ match }) {
 
@@ -34,7 +35,7 @@ function OrderScreen({ match }) {
         <Loader />
     ) : error ? (
 
-        <h2>{error}</h2>
+        <Message variant='danger'>{error}</Message>
     ) : (
         <div>
 
@@ -58,9 +59,9 @@ function OrderScreen({ match }) {
                             </p>
 
                             {order.isDelivered ? (
-                                <p>Status: Delivered on {order.deliveredAt}</p>
+                                <Message variant='success'>Delivered on {order.deliveredAt}</Message>
                             ) : (
-                                <p >Status: Not Delivered</p>
+                                <Message variant='warning'>Status: Not Delivered</Message>
                             )}
                         </ListGroup.Item>
 
@@ -71,9 +72,9 @@ function OrderScreen({ match }) {
                                 {order.paymentMethod}
                             </p>
                             {order.isPaid ? (
-                                <p>Paid on {order.paidAt}</p>
+                                <Message variant='success'>Paid on {order.paidAt}</Message>
                             ) : (
-                                <p >Not Paid</p>
+                                <Message variant='warning'>Not Paid</Message>
                             )}
                         </ListGroup.Item>
 
