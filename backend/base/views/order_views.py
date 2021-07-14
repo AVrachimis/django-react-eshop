@@ -60,6 +60,20 @@ def addOrderitems(request):
         return Response(serializer.data)
 
 
+
+@api_view(['GET',])
+@permission_classes([IsAuthenticated])
+def getMyOrders(request):
+
+    user = request.user
+
+    orders = user.order_set.all()
+
+    serializer = OrderSerializer(orders, many=True).data
+
+    return Response(serializer)
+
+
 @api_view(['GET',])
 @permission_classes([IsAuthenticated])
 def getOrderByID(request, pk):
@@ -89,4 +103,8 @@ def updateOrderToPaid(request, pk):
     order.save()
 
     return Response()
+
+
+
+
 
