@@ -52,7 +52,14 @@ function Header() {
                                         <NavDropdown.Item>Users</NavDropdown.Item>
                                     </LinkContainer>
 
-                                    <NavDropdown.Item onClick={logoutHandler}>Log out</NavDropdown.Item>
+                                    <LinkContainer to='/admin/productsList'>
+                                        <NavDropdown.Item>Rroducts</NavDropdown.Item>
+                                    </LinkContainer>
+
+                                    <LinkContainer to='/admin/orderList'>
+                                        <NavDropdown.Item>Users</NavDropdown.Item>
+                                    </LinkContainer>
+
                                 </NavDropdown>
                             )}
 
