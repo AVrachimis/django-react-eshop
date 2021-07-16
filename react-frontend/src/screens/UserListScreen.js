@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 
-import { listUsers } from '../actions/userActions'
+import { listUsers, deleteUser } from '../actions/userActions'
 
 
 function UserListScreen({ history }) {
@@ -19,6 +19,8 @@ function UserListScreen({ history }) {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+    const userDelete = useSelector(state => state.userDelete)
+    const { success: successDelete } = userDelete
 
 
     useEffect(() => {
@@ -27,9 +29,10 @@ function UserListScreen({ history }) {
         } else {
             history.push('/login')
         }
-    }, [dispatch, history])
+    }, [dispatch, history, successDelete])
 
     const deleteHandler = (id) => {
+        dispatch(deleteUser(id))
     }
 
     return (
