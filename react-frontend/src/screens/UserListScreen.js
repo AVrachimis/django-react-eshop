@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Form, Button } from 'react-bootstrap'
+import { Table, Form, Button, ButtonGroup } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
@@ -20,6 +20,9 @@ function UserListScreen() {
         dispatch(listUsers())
     }, [dispatch])
 
+    const deleteHandler = (id) => {
+    }
+
     return (
         <div>
             <h1>Users</h1>
@@ -31,11 +34,13 @@ function UserListScreen() {
                     : (
                         <Table striped bordered hover responsive className='table-sm'>
                             <thead>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Admin</th>
-                                <th></th>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Admin</th>
+                                    <th></th>
+                                </tr>
                             </thead>
 
                             <tbody>
@@ -50,7 +55,17 @@ function UserListScreen() {
                                             <i className='fas fa-check' style={{ color: 'red' }}></i>
                                         )
                                         }</td>
-                                        <td>{user._id}</td>
+                                        <td>
+                                            <LinkContainer to={`/admin/user/${user._id}`}>
+                                                <Button variant='light' className='btn-sm'>
+                                                    <i className='fas fa-edit'></i>
+                                                </Button>
+                                            </LinkContainer>
+
+                                            <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(user._id)}>
+                                                <i className='fas fa-trash'></i>
+                                            </Button>
+                                        </td>
 
                                     </tr>
                                 ))}

@@ -46,7 +46,6 @@ function Header() {
                                 </LinkContainer>
                             )}
 
-
                         </Nav>
 
                     </Navbar.Collapse>
