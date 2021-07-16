@@ -46,6 +46,16 @@ function Header() {
                                 </LinkContainer>
                             )}
 
+                            {userInfo && userInfo.isAdmin && (
+                                <NavDropdown title='Admin' id='adminmenue'>
+                                    <LinkContainer to='/admin/userList'>
+                                        <NavDropdown.Item>Users</NavDropdown.Item>
+                                    </LinkContainer>
+
+                                    <NavDropdown.Item onClick={logoutHandler}>Log out</NavDropdown.Item>
+                                </NavDropdown>
+                            )}
+
                         </Nav>
 
                     </Navbar.Collapse>
