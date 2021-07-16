@@ -27,8 +27,16 @@ function EditUserScreen({ match, history }) {
 
     // make sure a logged in user cannot login again
     useEffect(() => {
+        if (!user.name || user._id !== Number(userId)) {
+            dispatch(getUserDetails(userId))
+        } else {
+            setName(user.name)
+            setEmail(user.email)
+            setAdmin(user.isAdmin)
 
-    }, [])
+        }
+
+    }, [user])
 
     const submitHandler = (e) => {
         e.preventDefault()
