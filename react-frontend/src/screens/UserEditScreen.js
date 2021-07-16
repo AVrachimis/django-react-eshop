@@ -8,8 +8,8 @@ import Message from '../components/Message'
 
 import FormContainer from '../components/FormContainer'
 
-import { getUserDetails } from '../actions/userActions'
-
+import { getUserDetails, updateUser } from '../actions/userActions'
+import { USER_UPDATE_RESET } from '../constants/userConstants'
 
 function EditUserScreen({ match, history }) {
 
@@ -25,22 +25,30 @@ function EditUserScreen({ match, history }) {
     const userDetails = useSelector(state => state.userDetails)
     const { error, loading, user } = userDetails
 
-    // make sure a logged in user cannot login again
-    useEffect(() => {
-        if (!user.name || user._id !== Number(userId)) {
-            dispatch(getUserDetails(userId))
-        } else {
-            setName(user.name)
-            setEmail(user.email)
-            setAdmin(user.isAdmin)
+    const userUpdate = useSelector(state => state.userUpdate)
+    const { error: errorUpdate, loading: loadingUpdate, success: successUpdate } = userUpdate
 
+
+    useEffect(() => {
+        if (successUpdate) {
+            dispatch({ type: USER_UPDATE_RESET })
+            history.push('/admin/userList')
+        } else {
+            if (!user.name || user._id !== Number(userId)) {
+                dispatch(getUserDetails(userId))
+            } else {
+                setName(user.name)
+                setEmail(user.email)
+                setAdmin(user.isAdmin)
+
+            }
         }
 
-    }, [user])
+    }, [user, userId, successUpdate, history])
 
     const submitHandler = (e) => {
         e.preventDefault()
-
+        dispatch(updateUser({ _id: user._id, name, email, isAdmin }))
 
     }
 
@@ -53,6 +61,8 @@ function EditUserScreen({ match, history }) {
 
             <FormContainer>
                 <h1>Edit User Details</h1>
+                {loadingUpdate && <Loader />}
+                {errorUpdate && <Message variant='danger'>{error}</Message>}
 
                 {loading ? <Loader /> :
                     error ? <Message variant='danger'> {error} </Message>
