@@ -14,7 +14,7 @@ function ProductListScreen({ history, match }) {
     const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
-    const { loading, error, product } = productList
+    const { loading, error, products } = productList
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -22,7 +22,7 @@ function ProductListScreen({ history, match }) {
 
     useEffect(() => {
         if (userInfo && userInfo.isAdmin) {
-            dispatch(listProduct())
+            dispatch(listProducts())
         } else {
             history.push('/login')
         }
@@ -47,9 +47,9 @@ function ProductListScreen({ history, match }) {
                     <h1>Products</h1>
                 </Col>
 
-                <Col className='text-right'>
-                    <Button className='my-3' onClick={createProductHandler}>
-                        <i className='fas fa-plus'></i>Create Product
+                <Col className='text-left'>
+                    <Button className='my-3 float-right' onClick={createProductHandler}>
+                        <i className='fas fa-plus'></i> Create Product
                     </Button>
                 </Col>
 
@@ -66,31 +66,29 @@ function ProductListScreen({ history, match }) {
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Price</th>
-                                    <th>Ad</th>
+                                    <th>Category</th>
+                                    <th>Brand</th>
                                     <th></th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                {users.map(user => (
-                                    <tr key={user._id}>
-                                        <td>{user._id}</td>
-                                        <td>{user.name}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.isAdmin ? (
-                                            <i className='fas fa-check' style={{ color: 'green' }}></i>
-                                        ) : (
-                                            <i className='fas fa-check' style={{ color: 'red' }}></i>
-                                        )
-                                        }</td>
+                                {products.map(product => (
+                                    <tr key={product._id}>
+                                        <td>{product._id}</td>
+                                        <td>{product.name}</td>
+                                        <td>{product.price}</td>
+                                        <td>{product.category}</td>
+                                        <td>{product.brand}</td>
+
                                         <td>
-                                            <LinkContainer to={`/admin/user/${user._id}/edit`}>
+                                            <LinkContainer to={`/admin/product/${product._id}/edit`}>
                                                 <Button variant='light' className='btn-sm'>
                                                     <i className='fas fa-edit'></i>
                                                 </Button>
                                             </LinkContainer>
 
-                                            <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(user._id)}>
+                                            <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
                                                 <i className='fas fa-trash'></i>
                                             </Button>
                                         </td>
