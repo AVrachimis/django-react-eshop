@@ -5,7 +5,7 @@ import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-
+import axios from 'axios'
 import FormContainer from '../components/FormContainer'
 
 import { listProductDetails, updateProduct } from '../actions/productActions'
@@ -23,6 +23,7 @@ function ProductEditScreen({ match, history }) {
     const [countInStock, setCountInStock] = useState(0)
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
+    const [uploading, setUploading] = useState(false)
 
 
     const dispatch = useDispatch()
@@ -73,6 +74,34 @@ function ProductEditScreen({ match, history }) {
             description
         }))
 
+    }
+
+
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0]
+        const formData = new FormData()
+
+        formData.append('image', file)
+        formData.append('product_id', productId)
+
+        setUploading(true)
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            const { data } = await axios.post('/api/products/upload/', formData, config)
+
+
+            setImage(data)
+            setUploading(false)
+
+        } catch (error) {
+            setUploading(false)
+        }
     }
 
     return (
@@ -126,6 +155,16 @@ function ProductEditScreen({ match, history }) {
                                         onChange={(e) => setImage(e.target.value)}
                                     >
                                     </Form.Control>
+
+                                    <Form.File
+                                        id='image-file'
+                                        label='Choose File'
+                                        custom
+                                        onChange={uploadFileHandler}
+                                    >
+
+                                    </Form.File>
+                                    {uploading && <Loader />}
                                 </Form.Group>
 
                                 <Form.Group controlId='Drand'>
@@ -173,13 +212,6 @@ function ProductEditScreen({ match, history }) {
                                     >
                                     </Form.Control>
                                 </Form.Group>
-
-
-
-
-
-
-
 
 
                                 <Button type='submit' variant='primary'>
