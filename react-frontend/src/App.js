@@ -17,6 +17,7 @@ import UserListScreen from './screens/UserListScreen'
 import UserEditScreen from './screens/UserEditScreen'
 
 import ProductListScreen from './screens/ProductListScreen'
+import ProductEditScreen from './screens/ProductEditScreen'
 
 
 
@@ -31,6 +32,8 @@ function App() {
           <Route path='/product/:id' component={ProductScreen} />
 
           <Route path='/admin/productsList' component={ProductListScreen} />
+
+          <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
 
           <Route path='/cart/:id?' component={CartScreen} />
 
