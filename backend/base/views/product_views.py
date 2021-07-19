@@ -34,3 +34,30 @@ def deleteProduct(request, pk):
     product.delete()
 
     return Response("Product Successfully Deleted")
+
+@api_view(['POST', ])
+@permission_classes([IsAdminUser])
+def createProduct(request):
+
+    product = Product.objects.create(
+        user = request.user,
+        name = 'Sample Name',
+        price = 0,
+        brand = 'Sample Brand',
+        countInStock = 0,
+        category = 'Sample Category',
+        description = 'Sample Description'
+
+    )
+    serializer = ProductSerializer(product, many=False)
+
+    return Response(serializer.data)
+
+
+# @api_view(['CREATE', ])
+# @permission_classes([IsAdminUser])
+# def updateProduct(request, pk):
+#     product = Product.objects.get(_id=pk)
+#     serializer = ProductSerializer(product, many=False)
+
+#     return Response(serializer.data)
