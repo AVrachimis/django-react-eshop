@@ -106,5 +106,9 @@ def updateOrderToPaid(request, pk):
 
 
 
-
+@api_view(['GET',])
+def getOrders(request):
+    orders = Order.objects.all()
+    serializer = OrderSerializer(orders, many=True).data
+    return Response(serializer)
 
