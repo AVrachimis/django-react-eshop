@@ -57,7 +57,7 @@ function Header() {
                                     </LinkContainer>
 
                                     <LinkContainer to='/admin/orderList'>
-                                        <NavDropdown.Item>Users</NavDropdown.Item>
+                                        <NavDropdown.Item>Orders</NavDropdown.Item>
                                     </LinkContainer>
 
                                 </NavDropdown>
