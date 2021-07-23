@@ -32,9 +32,17 @@ function ProductScreen({ match, history }) {
     const { loading: loadingReview, error: errorReview, success: successReview } = productReviewCreate
 
     useEffect(() => {
+
+        if (successReview) {
+            setRating(0)
+            setComment('')
+            dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
+
+        }
+
         dispatch(listProductDetails(match.params.id))
 
-    }, [dispatch, match])
+    }, [dispatch, match, successReview])
 
     const addToCardHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`)
@@ -42,6 +50,13 @@ function ProductScreen({ match, history }) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
+        dispatch(createProductReview(
+            match.params.id, {
+            rating,
+            comment
+        }
+
+        ))
 
     }
 
