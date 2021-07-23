@@ -15,7 +15,7 @@ import { PayPalButton } from 'react-paypal-button-v2'
 
 
 
-function OrderScreen({ match }) {
+function OrderScreen({ match, history }) {
 
     const orderId = match.params.id
     const dispatch = useDispatch()
@@ -54,6 +54,10 @@ function OrderScreen({ match }) {
 
 
     useEffect(() => {
+
+        if (!userInfo) {
+            history.push('/login')
+        }
 
         if (!order || successPay || order._id !== Number(orderId) || successDeliver) {
             dispatch({ type: ORDER_PAY_RESET })
@@ -215,6 +219,7 @@ function OrderScreen({ match }) {
                                 </ListGroup.Item>
 
                             )}
+                            {loadingDeliver && <Loader />}
 
                             {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                                 <ListGroup.Item>
