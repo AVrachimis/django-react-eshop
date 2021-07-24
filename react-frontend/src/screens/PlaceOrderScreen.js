@@ -9,6 +9,7 @@ import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
 
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
+import Message from '../components/Message'
 
 function PlaceOrderScreen({ history }) {
 
@@ -151,7 +152,7 @@ function PlaceOrderScreen({ history }) {
                             {error &&
 
                                 <ListGroup.Item>
-                                    {error}
+                                    <Message variant='danger'>{error}</Message>
                                 </ListGroup.Item>
                             }
 

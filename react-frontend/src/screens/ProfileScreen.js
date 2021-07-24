@@ -79,7 +79,7 @@ function ProfileScreen({ history }) {
             <Col md={3}>
                 <h2>User Profile</h2>
                 {message && <h3 variant='danger'>{message}</h3>}
-                {error && <h3 variant='danger'>{error}</h3>}
+                {error && <Message variant='danger'>{error}</Message>}
                 {loading && <Loader />}
                 <Form onSubmit={submitHandler}>
 

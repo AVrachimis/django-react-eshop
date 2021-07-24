@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { addToCart, removeFromCart } from '../actions/cartActions'
+import Message from '../components/Message'
 
 function CartScreen({ match, location, history }) {
     const productId = match.params.id
@@ -33,9 +34,9 @@ function CartScreen({ match, location, history }) {
             <Col md={8}>
                 <h1>Shopping Cart</h1>
                 {cartItems.length === 0 ? (
-                    <h4>
+                    <Message variant='info'>
                         You cart is empty <Link to='/'>Go Back</Link>
-                    </h4>
+                    </Message>
                 ) : (
                     <ListGroup variant='flush'>
                         {cartItems.map(item => (

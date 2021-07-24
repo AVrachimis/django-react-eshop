@@ -66,7 +66,7 @@ function ProductScreen({ match, history }) {
             {loading ?
                 <Loader />
                 : error
-                    ? <h3>{error}</h3>
+                    ? <Message variant='danger'>{error}</Message>
                     : (
 
 
@@ -174,10 +174,27 @@ function ProductScreen({ match, history }) {
                                     <ListGroup variant='flush'>
                                         {product.reviews.map((review) => (
                                             <ListGroup.Item key={review._id}>
-                                                <strong>{review.name}</strong>
+                                                <Row>
+                                                    <Col md={4}>
+                                                        <strong>{review.name}</strong>
+                                                        <p>{review.createdAt.substring(0, 16).replace("T", ", ")}</p>
+                                                    </Col>
+
+                                                    <Col>
+                                                        <Rating value={review.rating} color={'#ffd700'} />
+
+                                                    </Col>
+
+                                                    <p>{review.comment}</p>
+
+                                                </Row>
+                                                <Col>
+
+                                                </Col>
+                                                {/* <strong>{review.name}</strong>
                                                 <Rating value={review.rating} color={'#ffd700'} />
                                                 <p>{review.createdAt.substring(0, 16).replace("T", ", ")}</p>
-                                                <p>{review.comment}</p>
+                                                <p>{review.comment}</p> */}
                                             </ListGroup.Item>
                                         ))}
 
