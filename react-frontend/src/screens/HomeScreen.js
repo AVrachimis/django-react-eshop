@@ -31,11 +31,15 @@ function HomeScreen({ history }) {
                 : error ? <Message variant='danger'>{error}</Message>
                     :
                     <Row>
-                        {products.map(product => (
+                        {!products.length == 0 ? (products.map(product => (
                             <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                                 <Product product={product} />
                             </Col>
-                        ))}
+                        ))) : (
+                            <Message variant='info'>We couldn't find any matches for "{keyword.substring(9,)}"</Message>
+                        )
+
+                        }
                     </Row>
             }
         </div>
