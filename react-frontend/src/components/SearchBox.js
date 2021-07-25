@@ -47,7 +47,7 @@ function SearchBox() {
                         variant='outline-success'
                         className='p-2'
                     >
-                        Submit
+                        <i className=' fas fa-search'></i>
                     </Button>
                 </Col>
             </Row >
