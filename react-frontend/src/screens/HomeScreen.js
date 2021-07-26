@@ -30,9 +30,15 @@ function HomeScreen({ history }) {
 
     return (
         <div>
-            <h1>Latest Products</h1>
 
-            <ProductCarousel />
+            {(!keyword || keyword.startsWith('?keyword=&page')) && (
+                <div>
+                    <h1>Top Rated Products</h1>
+                    <ProductCarousel />
+                </div>
+            )
+            }
+            <h1>Latest Products</h1>
 
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
