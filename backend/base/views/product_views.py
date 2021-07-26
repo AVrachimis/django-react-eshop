@@ -44,7 +44,7 @@ def getProducts(request):
 def getTopProducts(request):
 
     products = Product.objects.filter(rating__gt=4).order_by('rating')[::-1][:5]
-    serializer = ProductSerializer(product, many=True)
+    serializer = ProductSerializer(products, many=True)
 
     return Response(serializer.data)
 
