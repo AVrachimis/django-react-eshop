@@ -40,6 +40,14 @@ def getProducts(request):
     serializer = ProductSerializer(products, many=True)
     return Response({'products':serializer.data, 'page':int(page), 'pages':paginator.num_pages})
 
+@api_view(['GET', ])
+def getTopProducts(request):
+
+    products = Product.objects.filter(rating__gt=4).order_by('rating')[::-1][:5]
+    serializer = ProductSerializer(product, many=True)
+
+    return Response(serializer.data)
+
 
 @api_view(['GET', ])
 def getProduct(request, pk):
