@@ -13,7 +13,7 @@ function SearchBox() {
     const submitHandler = (e) => {
         e.preventDefault()
         if (keyword) {
-            history.push(`/?keyword=${keyword}`)
+            history.push(`/?keyword=${keyword}&page=1`)
         } else {
             history.push(history.push(history.location.path))
         }
@@ -22,10 +22,7 @@ function SearchBox() {
     }
     return (
 
-        <Form
-            onSubmit={submitHandler}
-
-        >
+        <Form onSubmit={submitHandler} inline>
 
             <Row className='g-2'>
 
