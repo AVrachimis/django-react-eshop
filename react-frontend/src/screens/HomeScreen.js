@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import ProductCarousel from '../components/ProductCarousel'
 
 import Paginate from '../components/Paginate'
 
@@ -30,6 +31,9 @@ function HomeScreen({ history }) {
     return (
         <div>
             <h1>Latest Products</h1>
+
+            <ProductCarousel />
+
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
                     :

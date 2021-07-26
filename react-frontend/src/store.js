@@ -9,7 +9,7 @@ import {
     productCreateReducer,
     productUpdateReducer,
     productReviewCreateReducer,
-    productTopReducer,
+    productTopRatedReducer,
 
 } from './reducers/productsReducers'
 
@@ -44,7 +44,7 @@ const reducer = combineReducers({
     productCreate: productCreateReducer,
     productUpdate: productUpdateReducer,
     productReviewCreate: productReviewCreateReducer,
-    productTop: productTopReducer,
+    productTopRated: productTopRatedReducer,
 
     cart: cartReducer,
 
