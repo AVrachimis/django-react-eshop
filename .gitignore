@@ -33,7 +33,7 @@ MANIFEST
 *.manifest
 *.spec
 
-settings.py
+/backend/backend/settings.py
 
 # Installer logs
 pip-log.txt
