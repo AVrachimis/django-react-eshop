@@ -54,7 +54,6 @@ def registerUser(request):
 
 
 @api_view(['PUT' ])
-@permission_classes([IsAuthenticated])
 def updateUserProfile(request):
     user = request.user
     serializer = UserSerializerWithToken(user, many=False)
@@ -100,7 +99,7 @@ def getUserById(request, pk):
 
 @api_view(['PUT' ])
 @permission_classes([IsAdminUser])
-def updateUserProfile(request,pk):
+def updateUserProfileAdmin(request,pk):
     user = User.objects.get(id=pk)
 
     data = request.data
