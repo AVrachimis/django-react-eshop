@@ -1,1 +1,1 @@
-web: gunicorn backend.wsgi --timeout 30 --keep-alive 5 --log-file debug
+web: gunicorn backend.wsgi --log-file -

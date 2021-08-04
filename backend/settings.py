@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'base.apps.BaseConfig',
     'rest_framework',
     'corsheaders',
-    'storages'
+    'storages',
+
+    'base.apps.BaseConfig',
+
 
 ]
 
@@ -181,8 +183,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'react-frontend/build/static'
 ]
 
-MEDIA_ROOT = BASE_DIR/'static/images'
-STATIC_ROOT = BASE_DIR/'staticfiles'
+MEDIA_ROOT = BASE_DIR / 'static/images'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type
