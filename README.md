@@ -53,13 +53,26 @@ can explore, view and order products.<project-description></p>
   
 #### Admin Panel Pages - Users/Orders/Products
 ![Admin Page](https://user-images.githubusercontent.com/59974142/128188564-7840cd0c-1047-4a32-a23b-724470419f27.JPG)
-
+  
+  
+## Intructions to run locally
+  Make sure Python 3 and Node.js are installed
+  - Clone the resository
+  - Create and activate virtual environment
+  > conda create -n eshop python=3.8.5 <br>
+  > conda activate eshop
+  - Install all the required dependencies
+  > pip install -r requirements.txt
+  - Apply migrations
+  > python manage.py makemigrations <br>
+  > python manage.py migrate
+  
+  - Run the server
+  >python manage.py runserver
 
 ## Available Commands
   
-Add commands here
-<!-- 
-In the project directory, you can run:
+In `react-frontend` directory, you can run:
 
 ### `npm start" : "react-scripts start"`,
 
@@ -69,7 +82,7 @@ You will also see any lint errors in the console.
 ### `"npm run build": "react-scripts build"`,
 
 Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes. Your app will be ready to deploy!
-
+<!-- 
 ### `"npm run test": "react-scripts test"`,
 
 Launches the test runner in the interactive watch mode.
@@ -82,8 +95,8 @@ For running the server and app together I am using concurrently this helps a lot
 
 For running the server file on you can use this command.
 
-### `npm run serve`
- -->
+### `npm run serve` -->
+
 ## Built With
 
 - Python, Django, Django Rest Framework
