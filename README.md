@@ -54,6 +54,13 @@ can explore, view and order products.<project-description></p>
 #### Admin Panel Pages - Users/Orders/Products
 ![Admin Page](https://user-images.githubusercontent.com/59974142/128188564-7840cd0c-1047-4a32-a23b-724470419f27.JPG)
   
+ ## Built With
+
+- Python, Django, Django Rest Framework
+- JavaScript, ReactJs
+- AWS, PostgreSQL
+- Redux
+- HTML, CSS
   
 ## Intructions to run locally
   Make sure Python 3 and Node.js are installed
@@ -97,13 +104,8 @@ For running the server file on you can use this command.
 
 ### `npm run serve` -->
 
-## Built With
-
-- Python, Django, Django Rest Framework
-- JavaScript, ReactJs
-- AWS, PostgreSQL
-- Redux
-- HTML, CSS
+  
+ 
 <!-- 
 ## Future Updates
 
